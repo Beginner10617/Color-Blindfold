@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PixelPerfectMovement : MonoBehaviour
 {
@@ -10,13 +11,17 @@ public class PixelPerfectMovement : MonoBehaviour
     KeyCode moveLeftKey = KeyCode.LeftArrow;
     KeyCode moveRightKey = KeyCode.RightArrow;
     Vector2 currentPosition, nextPosition;
+    RaycastHit2D rayHitInfo;
+    bool isMoving;
     public float speed;
     public float unitLength;
+    public LayerMask layerOfWalls;
+    public Transform checkPoint;
     void Start()
     {
         inputBuffer = new List<Vector2>();
-        transform.position = new Vector3(0,0,0);
-        currentPosition = new Vector2(0,0);
+        transform.position = checkPoint.position;
+        currentPosition = (Vector2) transform.position;
     }
     void Update()
     {
@@ -30,16 +35,29 @@ public class PixelPerfectMovement : MonoBehaviour
         if(Input.GetKeyDown(moveDownKey))
             inputBuffer.Add(new Vector2( 0,-1));
         
-        //Moving
         if(inputBuffer.Count == 0)  return;
+        //Checking for walls
+        if(!isMoving)
+        {
+            rayHitInfo = Physics2D.Raycast(transform.position, inputBuffer[0], unitLength, layerOfWalls);
+            if(rayHitInfo.collider != null)
+            {
+                inputBuffer.RemoveAt(0);
+                return;
+            }
+        }
+        //Moving
         nextPosition = currentPosition + inputBuffer[0] * unitLength;
         if((Vector2) transform.position == nextPosition)
         {
             currentPosition = nextPosition;
             inputBuffer.RemoveAt(0);
+            isMoving = false;
         }
         else
+        {
             transform.position = Vector2.MoveTowards(transform.position, nextPosition, speed * Time.deltaTime);
-        
+            isMoving = true;
+        }
     }
 }
