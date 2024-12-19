@@ -200,6 +200,7 @@ MonoBehaviour:
   layerOfWalls:
     serializedVersion: 2
     m_Bits: 8
+  checkPoint: {fileID: 395347852226078114}
 --- !u!114 &1890797394381185171
 MonoBehaviour:
   m_ObjectHideFlags: 0
