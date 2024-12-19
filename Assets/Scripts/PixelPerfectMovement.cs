@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PixelPerfectMovement : MonoBehaviour
 {
-    List<Vector2> inputBuffer;
+    public List<Vector2> inputBuffer;
     KeyCode moveUpKey = KeyCode.UpArrow;
     KeyCode moveDownKey = KeyCode.DownArrow;
     KeyCode moveLeftKey = KeyCode.LeftArrow;
