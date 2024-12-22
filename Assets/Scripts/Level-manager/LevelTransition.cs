@@ -10,8 +10,10 @@ public class LevelTransition : MonoBehaviour
     Transform currentLevel;
     [SerializeField] Vector3 offset = new Vector3(0.5f, 0, 0);
     [SerializeField] float speed = 7.5f;
+    LoadSaveSys gameManager;
     void Start()
     {
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<LoadSaveSys>();
         currentLevel = GameObject.FindWithTag("LevelHandle").transform;
         if(nextLevel != null)
             nextLevel.gameObject.SetActive(false);
@@ -21,7 +23,15 @@ public class LevelTransition : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             transitioning = true;
-            if(nextLevel != null)   nextLevel.gameObject.SetActive(true);
+            if(nextLevel != null)   
+            {
+                nextLevel.gameObject.SetActive(true);
+                gameManager.SaveLevel(nextLevel.gameObject.name);
+            }
+            else
+            {
+                gameManager.SaveLevel("DefaultLevel");
+            }
         }
     }
     void Update()
