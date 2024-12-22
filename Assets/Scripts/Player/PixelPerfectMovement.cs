@@ -12,7 +12,7 @@ public class PixelPerfectMovement : MonoBehaviour
     KeyCode moveRightKey = KeyCode.RightArrow;
     Vector2 currentPosition, nextPosition;
     RaycastHit2D rayHitInfo;
-    bool isMoving;
+    public bool isMoving;
     public float speed;
     public float unitLength;
     public LayerMask layerOfWalls;
@@ -22,6 +22,17 @@ public class PixelPerfectMovement : MonoBehaviour
         inputBuffer = new List<Vector2>();
         transform.position = checkPoint.position;
         currentPosition = (Vector2) transform.position;
+    }
+    void OnCollisionStay2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("MovableBlock"))
+        {
+            if(other.gameObject.GetComponent<MovableBlock>().touchingWall)
+            {
+                isMoving=false;
+                inputBuffer = new List<Vector2>();
+            }
+        }
     }
     void Update()
     {
