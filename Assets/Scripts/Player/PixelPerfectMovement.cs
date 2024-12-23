@@ -16,8 +16,9 @@ public class PixelPerfectMovement : MonoBehaviour
     public float speed;
     public float unitLength;
     public LayerMask layerOfWalls;
+    public LayerMask layerOfBounds;
     public Transform checkPoint;
-    void Start()
+    public void Start()
     {
         inputBuffer = new List<Vector2>();
         transform.position = checkPoint.position;
@@ -50,7 +51,7 @@ public class PixelPerfectMovement : MonoBehaviour
         //Checking for walls
         if(!isMoving)
         {
-            rayHitInfo = Physics2D.Raycast(transform.position, inputBuffer[0], unitLength, layerOfWalls);
+            rayHitInfo = Physics2D.Raycast(transform.position, inputBuffer[0], unitLength, layerOfWalls | layerOfBounds);
             if(rayHitInfo.collider != null)
             {
                 inputBuffer.RemoveAt(0);

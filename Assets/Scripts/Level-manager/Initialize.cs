@@ -27,6 +27,8 @@ public class Initialize : MonoBehaviour
             if(child.gameObject.name == "Start")
             {
                 player.GetComponent<PixelPerfectMovement>().checkPoint = child;
+                player.GetComponent<PixelPerfectMovement>().Start();
+                //player.transform.position = child.position;
             }
         }
     }
