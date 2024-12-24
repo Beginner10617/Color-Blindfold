@@ -10746,6 +10746,7 @@ MonoBehaviour:
   layerOfBounds:
     serializedVersion: 2
     m_Bits: 128
+  damagePerSecond: 25
 --- !u!61 &3152624172844744800
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11665,22 +11666,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1908333786613989430, guid: ab4509b4f410b4ede99fc910fb67cdb2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4371372963883861728, guid: ab4509b4f410b4ede99fc910fb67cdb2, type: 3}
       propertyPath: checkPoint
       value: 
       objectReference: {fileID: 2718052757089595355}
-    - target: {fileID: 4371372963883861728, guid: ab4509b4f410b4ede99fc910fb67cdb2, type: 3}
-      propertyPath: layerOfBounds.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 4990056992203600082, guid: ab4509b4f410b4ede99fc910fb67cdb2, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

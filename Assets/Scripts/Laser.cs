@@ -13,6 +13,7 @@ public class Laser : MonoBehaviour
     [SerializeField] Vector2 colliderOffset;
     GameObject particles;
     [SerializeField] LayerMask layerOfBounds;
+    [SerializeField] float damagePerSecond = 25;
     void Start()
     {
         particles = Instantiate(particlesPrefab, transform.parent);
@@ -33,8 +34,7 @@ public class Laser : MonoBehaviour
             endPoint = rayHitInfo.point;
             if(rayHitInfo.collider.CompareTag("Player"))
             {
-                //rayHitInfo.collider.GetComponent<Player>().Die();
-                Debug.Log("Player Hit");
+                rayHitInfo.collider.GetComponent<HealthSystem>().TakeDamage(damagePerSecond * Time.deltaTime);
             }
         }
         
