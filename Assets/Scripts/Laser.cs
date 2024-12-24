@@ -35,6 +35,11 @@ public class Laser : MonoBehaviour
             if(rayHitInfo.collider.CompareTag("Player"))
             {
                 rayHitInfo.collider.GetComponent<HealthSystem>().TakeDamage(damagePerSecond * Time.deltaTime);
+                rayHitInfo.collider.GetComponent<PlayerAnimation>().animator.SetBool("UnderLaser", true);
+            }
+            else
+            {
+                GameObject.FindWithTag("Player").GetComponent<PlayerAnimation>().animator.SetBool("UnderLaser", false);
             }
         }
         

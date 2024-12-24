@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    Animator animator;
+    public Animator animator;
     PixelPerfectMovement playerInfo;
     void Start()
     {
