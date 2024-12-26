@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Shift : MonoBehaviour
 {
+    public bool isOn = true;
     PixelPerfectMovement playerMovement;
     [SerializeField] float speed = 5f;
     [SerializeField] Vector3 destination = new Vector2(0, 0);
@@ -14,6 +15,10 @@ public class Shift : MonoBehaviour
         {
             destination = transform.position + transform.up.normalized;
         }
+    }
+    void Update()
+    {
+        GetComponent<SpriteRenderer>().enabled = isOn;
     }
     IEnumerator ShiftRoutine(Transform obj)
     {
@@ -34,6 +39,7 @@ public class Shift : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
+        if(!isOn) return;
         if (other.CompareTag("Player"))
         {
             playerMovement = other.gameObject.GetComponent<PixelPerfectMovement>();
