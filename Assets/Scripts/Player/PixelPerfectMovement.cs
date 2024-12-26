@@ -10,7 +10,7 @@ public class PixelPerfectMovement : MonoBehaviour
     KeyCode moveDownKey = KeyCode.DownArrow;
     KeyCode moveLeftKey = KeyCode.LeftArrow;
     KeyCode moveRightKey = KeyCode.RightArrow;
-    Vector2 currentPosition, nextPosition;
+    public Vector2 currentPosition, nextPosition;
     RaycastHit2D rayHitInfo;
     public bool isMoving;
     public float speed;
@@ -35,7 +35,7 @@ public class PixelPerfectMovement : MonoBehaviour
             }
         }
     }
-    void Update()
+    public void HandleInput()
     {
         //Input Handling
         if(Input.GetKeyDown(moveUpKey))     
@@ -46,7 +46,10 @@ public class PixelPerfectMovement : MonoBehaviour
             inputBuffer.Add(new Vector2(-1, 0));
         if(Input.GetKeyDown(moveDownKey))
             inputBuffer.Add(new Vector2( 0,-1));
-        
+    }
+    void Update()
+    {
+        HandleInput();
         if(inputBuffer.Count == 0)  return;
         //Checking for walls
         if(!isMoving)
