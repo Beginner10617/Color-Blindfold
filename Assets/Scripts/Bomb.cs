@@ -8,6 +8,7 @@ public class Bomb : MonoBehaviour
     [SerializeField] float minimumDamage = 75;
     [SerializeField] float minimumDamageDistance = 1.5f;
     [SerializeField] float explosionDelay = .5f;
+    public float newScale = 1.5f;
     Animator animator;
     [SerializeField] RuntimeAnimatorController animationController;
     void Start()
@@ -20,8 +21,11 @@ public class Bomb : MonoBehaviour
     }
     IEnumerator Explode(Collider2D other)
     {
+        GetComponent<Collider2D>().enabled = false;
+        transform.localScale = new Vector3(newScale, newScale, newScale);
         GetComponent<SpriteRenderer>().sortingOrder = 20;
-        animator = gameObject.AddComponent<Animator>();
+        if(animator == null)
+            animator = gameObject.AddComponent<Animator>();
         animator.runtimeAnimatorController = animationController;
         while(explosionDelay > 0)
         {
@@ -39,6 +43,6 @@ public class Bomb : MonoBehaviour
             player.GetComponent<HealthSystem>().TakeDamage(minimumDamage);
         }
         Destroy(gameObject);
-        yield return null;
+        yield break;
     }
 }

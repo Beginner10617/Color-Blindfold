@@ -12441,7 +12441,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimumDamage: 75
   minimumDamageDistance: 1.5
-  explosionDelay: 0.5
+  explosionDelay: 0.25
+  newScale: 1.5
   animationController: {fileID: 9100000, guid: b90b85bb37227478285e8ebb7863896e, type: 2}
 --- !u!61 &5723567516432937047
 BoxCollider2D:
@@ -13191,7 +13192,7 @@ Transform:
   m_GameObject: {fileID: 6969460407076371830}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.96875, y: -4, z: 0}
+  m_LocalPosition: {x: 7, y: -4, z: 0}
   m_LocalScale: {x: 0.74999994, y: 0.74999994, z: 0.74999994}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -13211,7 +13212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimumDamage: 75
   minimumDamageDistance: 1.5
-  explosionDelay: 0.5
+  explosionDelay: 0.25
+  newScale: 1.5
   animationController: {fileID: 9100000, guid: b90b85bb37227478285e8ebb7863896e, type: 2}
 --- !u!61 &7878350319898858773
 BoxCollider2D:
