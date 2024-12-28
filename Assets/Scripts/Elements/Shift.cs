@@ -35,6 +35,10 @@ public class Shift : MonoBehaviour
             yield return null;
         }
         obj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        if(obj.CompareTag("MovableBlock"))
+        {
+            obj.GetComponent<MovableBlock>().isInRest = true;
+        }
         yield return null;
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -45,11 +49,19 @@ public class Shift : MonoBehaviour
             playerMovement = other.gameObject.GetComponent<PixelPerfectMovement>();
             playerMovement.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             playerMovement.inputBuffer.Insert(1, transform.up.normalized);
+            StartCoroutine(ShiftRoutine(other.transform));
         }
+    }
+    void OnTriggerStay2D(Collider2D other)
+    {
         if(other.CompareTag("MovableBlock"))
         {
-            other.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            if(other.GetComponent<MovableBlock>().isInRest)
+            {
+                other.GetComponent<MovableBlock>().isInRest = false;
+                other.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+                StartCoroutine(ShiftRoutine(other.transform));
+            }
         }
-        StartCoroutine(ShiftRoutine(other.transform));
     }
 }

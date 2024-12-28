@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MovableBlock : MonoBehaviour
 {
-    bool isInRest = true;
+    public bool isInRest = true;
     PixelPerfectMovement playerMovement;
     public bool touchingWall=false;
     void OnCollisionEnter2D(Collision2D other)
